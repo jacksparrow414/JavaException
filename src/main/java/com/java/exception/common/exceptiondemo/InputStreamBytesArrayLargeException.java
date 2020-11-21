@@ -1,13 +1,12 @@
 package com.java.exception.common.exceptiondemo;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 一次性将InputStream全部字节读入到内存中，引起内存溢出.
@@ -52,19 +51,19 @@ public class InputStreamBytesArrayLargeException {
      * @param args
      * @throws Exception
      */
-    public static void main(String[] args) throws Exception{
-        File sourceFile = new File("/Users/jacksparrow414/Downloads/480P_2000K_326434702.mp4");
-        File targetFile = new File("/Users/jacksparrow414/Downloads/target.mp4");
-        InputStream inputStream = new FileInputStream(sourceFile);
-        OutputStream outputStream = new FileOutputStream(targetFile);
-        byte[] bytes = new byte[4096];
-        LocalDateTime startTime = LocalDateTime.now();
-        // 每次会将InputStream中的流读入到固定的bytes字节数组中
-        while (-1 != inputStream.read(bytes, 0, bytes.length)) {
-            outputStream.write(bytes, 0, bytes.length);
-        }
-        LocalDateTime endTime = LocalDateTime.now();
-        Duration duration = Duration.between(startTime, endTime);
-        log.info("读取文件完毕, 耗时{}毫秒", duration.toMillis());
-    }
+//    public static void main(String[] args) throws Exception{
+//        File sourceFile = new File("/Users/jacksparrow414/Downloads/480P_2000K_326434702.mp4");
+//        File targetFile = new File("/Users/jacksparrow414/Downloads/target.mp4");
+//        InputStream inputStream = new FileInputStream(sourceFile);
+//        OutputStream outputStream = new FileOutputStream(targetFile);
+//        byte[] bytes = new byte[4096];
+//        LocalDateTime startTime = LocalDateTime.now();
+//        // 每次会将InputStream中的流读入到固定的bytes字节数组中
+//        while (-1 != inputStream.read(bytes, 0, bytes.length)) {
+//            outputStream.write(bytes, 0, bytes.length);
+//        }
+//        LocalDateTime endTime = LocalDateTime.now();
+//        Duration duration = Duration.between(startTime, endTime);
+//        log.info("读取文件完毕, 耗时{}毫秒", duration.toMillis());
+//    }
 }
